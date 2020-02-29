@@ -1,0 +1,23 @@
+name: 'meeting-1on1-action'
+description: 'Manage 1:1 meeting issues'
+
+branding:
+  icon: 'users'
+  color: 'green'
+
+inputs:
+  configuration-path:
+    description: 'The path for the issue configurations'
+    default: '.github/101.yml'
+    required: false
+  repo-token:
+    description: 'The GITHUB_TOKEN secret'
+    required: true
+
+outputs:
+  url:
+    description: '1:1 issue URL'
+
+runs:
+  using: 'node12'
+  main: 'build/index.js'
