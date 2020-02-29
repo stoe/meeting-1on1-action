@@ -2,7 +2,7 @@
 
 > This GitHub Action creates a new issue for a 1:1 meeting with your manager.
 
-![Test](https://github.com/stoe/meeting-1on1-action/workflows/Test/badge.svg) [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+![Build and Test](https://github.com/stoe/meeting-1on1-action/workflows/Build%20and%20Test/badge.svg) [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 ## Usage
 
