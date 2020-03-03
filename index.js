@@ -74,7 +74,7 @@ async function run() {
         repo,
         name: label,
         description: '1:1 meeting agenda and notes',
-        color: '4078c0'
+        color: '6e5494'
       })
     }
 
