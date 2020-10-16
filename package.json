@@ -1,7 +1,7 @@
 {
-  "name": "meeting-1on1-action",
+  "name": "@stoe/meeting-1on1-action",
   "description": "Manage 1:1 meeting issues",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "keywords": [],
   "author": {
     "name": "Stefan Stölzle",
@@ -14,9 +14,12 @@
   "bugs": {
     "url": "https://github.com/stoe/meeting-1on1-action/issues"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "main": "index.js",
   "scripts": {
-    "pack": "ncc build index.js -o build",
+    "pack": "ncc build index.js -o build -m",
     "pretest": "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
     "test": "eslint ./index.js",
     "start": "node ./index.js"
@@ -29,7 +32,7 @@
   },
   "devDependencies": {
     "@github/prettier-config": "^0.0.4",
-    "@zeit/ncc": "^0.21.1",
+    "@vercel/ncc": "^0.24.1",
     "eslint": "^7.11.0",
     "eslint-config-prettier": "^6.12.0",
     "eslint-plugin-github": "^4.1.1"
