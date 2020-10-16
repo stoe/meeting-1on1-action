@@ -3,12 +3,12 @@ const github = require('@actions/github')
 const yaml = require('js-yaml')
 const moment = require('moment')
 
-async function run() {
+;(async () => {
   try {
     let response
 
     const token = core.getInput('repo-token', {required: true})
-    const client = new github.GitHub(token)
+    const client = new github.getOctokit(token)
 
     const {context} = github
     const {owner, repo} = context.repo
@@ -132,6 +132,4 @@ async function run() {
   } catch (err) {
     core.setFailed(err.message)
   }
-}
-
-run()
+})()
