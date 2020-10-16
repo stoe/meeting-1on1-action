@@ -1,6 +1,5 @@
 {
   "name": "meeting-1on1-action",
-  "private": true,
   "description": "Manage 1:1 meeting issues",
   "version": "1.0.1",
   "keywords": [],
