@@ -1,26 +1,56 @@
-name: Build and Test
-
 on:
-  pull_request:
   push:
     branches:
-      - master
+      - main
+  pull_request:
+    branches:
+      - main
+
+name: test
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x, 13.x]
+
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - name: Checkout Code
+        uses: actions/checkout@v2
         with:
-          node-version: 12.x
-      - uses: actions/cache@v1
-        id: node-cache
+          lfs: true
+
+      - name: Setup node
+        uses: actions/setup-node@v1
         with:
-          path: node_modules
-          key: node-cache-${{ hashFiles('**/package-lock.json') }}
-      - run: npm ci
-        if: steps.node-cache.outputs.cache-hit != 'true'
-      # TODO: - run: npm run lint
-      - run: npm run pack
-      # TODO: - run: npm test
+          node-version: ${{ matrix.node-version }}
+
+      - name: Get npm cache directory
+        id: npm-cache
+        run: |
+          echo "::set-output name=dir::$(npm config get cache)"
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.npm-cache.outputs.dir }}
+          key: npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: npm-
+
+      - name: Install Dependencies
+        run: npm install --ignore-scripts --pure-lockfile
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+
+      - name: Build
+        run: |
+          npm run build --if-present
+          npm run pack --if-present
+        env:
+          CI: true
+
+      - name: Test
+        run: npm test
+        env:
+          CI: true
