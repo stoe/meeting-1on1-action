@@ -17,7 +17,10 @@
   },
   "main": "index.js",
   "scripts": {
-    "pack": "ncc build index.js -o build"
+    "pack": "ncc build index.js -o build",
+    "pretest": "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
+    "test": "eslint ./index.js",
+    "start": "node ./index.js"
   },
   "dependencies": {
     "@actions/core": "^1.2.6",
@@ -26,6 +29,11 @@
     "js-yaml": "^3.14.0"
   },
   "devDependencies": {
-    "@zeit/ncc": "^0.21.1"
-  }
+    "@github/prettier-config": "^0.0.4",
+    "@zeit/ncc": "^0.21.1",
+    "eslint": "^7.11.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-github": "^4.1.1"
+  },
+  "prettier": "@github/prettier-config"
 }
