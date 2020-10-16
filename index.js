@@ -22,7 +22,7 @@ const dayjs = require('dayjs')
       throw new Error(`config file not found`)
     }
 
-    response = await client.repos.getContents({
+    response = await client.repos.getContent({
       owner,
       repo,
       path,
