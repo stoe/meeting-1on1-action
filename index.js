@@ -1,7 +1,7 @@
 const core = require('@actions/core')
 const github = require('@actions/github')
 const yaml = require('js-yaml')
-const moment = require('moment')
+const dayjs = require('dayjs')
 
 ;(async () => {
   try {
@@ -122,7 +122,7 @@ const moment = require('moment')
     response = await client.issues.create({
       owner,
       repo,
-      title: title || `@${manager}/@${report} 1:1 Topics ${moment().format('M/D/YYYY')}`,
+      title: title || `@${manager}/@${report} 1:1 Topics ${dayjs().format('M/D/YYYY')}`,
       body,
       labels: [label],
       assignees: [manager, report]
