@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: stoe/meeting-1on1-action@v1.1.3
+      - uses: stoe/meeting-1on1-action@v2
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -31,26 +31,35 @@ This reads from a `.github/101.yml` configuration file within your repository.
 
 To use the `meeting-1on1-action` you have to provide a configuration file within your repository.
 
-#### Example
+Manager's github.com username without the `@`.
 
 ```yml
-# (required) manager's github.com username witout the `@`
 manager: my_manager
+```
 
-# (required) report's github.com username witout the `@`
+Report's github.com username without the `@`.
+
+```yml
 report: me
+```
 
-# (required) label is created if not already available
+Label is created if not already available.
+
+```yml
 label: '1:1 meeting'
+```
 
-# (optional) title
-#   if not provided will default to
-#   e.g. @my_manager/@me 1:1 Topics 2/29/2020
-#   with current date automatically added
-# set this to `title: false` to use the default
-title: '@{% manager %}/@{% report %} 1:1 Topics'
+Issue title.
+If not provided will default to `@my_manager/@me 1:1 Topics 10/22/2020`.
+Set this to `title: false` to use the default.
 
-# (required)
+```yml
+title: '@{% manager %}/@{% report %} 1:1 Topics {% date %}'
+```
+
+Issue template string or path to an issue template in `.github/ISSUE_TEMPLATE/`
+
+```yml
 template: |
   ### Last 1:1
 
@@ -61,24 +70,44 @@ template: |
   - [ ] ...
 ```
 
-#### Variables
+```yml
+template: .github/ISSUE_TEMPLATE/101.md
+```
 
-The above `template` field has a `{% last %}` variable.
+#### `title` and `template` variables
 
-The available variables are:
+These will be replaced in your configuration `title` and `template` / within your `.github/ISSUE_TEMPLATE/` file.
+
+- `{% date %}`: auto filled with the date of the 1:1 meeting
 
 - `{% last %}`: auto filled with reference link(s) to the last 1:1 meeting issue(s)
 
 - `{% manager %}`: auto filled with the manager's github.com username provided in the config file
 
-- `{% report %}`: auto filled with the reports's github.com username provided in the config file
-
+- `{% report %}`: auto filled with the reports' github.com username provided in the config file
 
 ### Inputs
 
-- `repo-token`: `${{ secrets.GITHUB_TOKEN }}` Token to authenticate within the workflow run. More info available [here](https://help.github.com/en/actions/configuring-and-managing-workflows/authenticating-with-the-github_token#about-the-github_token-secret).
+The `GITHUB_TOKEN` secret.
+More info available [here](https://docs.github.com/actions/reference/authentication-in-a-workflow#about-the-github_token-secret).
 
-- `configuration-path`: (optional) Set the path to your configuration file within the repository. Defaults to `.github/101.yml`.
+```yaml
+repo-token: ${{ secrets.GITHUB_TOKEN }}
+```
+
+The path for the issue configurations within your repository.
+Defaults to `.github/101.yml`.
+
+```yaml
+configuration-path: .github/101.yml
+```
+
+Is the meeting today or tomorrow?
+Defaults to `today` and will fall back to `today` if neither `today` or `tomorrow` are provided.
+
+```yaml
+scheduled-day: today
+```
 
 ### Outputs
 
@@ -92,7 +121,7 @@ steps:
     uses: actions/checkout@v2
 
   - name: Create 1:1 issue
-    uses: stoe/meeting-1on1-action@v1.1.3
+    uses: stoe/meeting-1on1-action@v2
     id: issue
     with:
       repo-token: ${{ secrets.GITHUB_TOKEN }}
