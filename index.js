@@ -5,8 +5,6 @@ const dayjs = require('dayjs')
 
 ;(async () => {
   try {
-    let response
-
     const token = core.getInput('repo-token', {required: true})
     const client = new github.getOctokit(token)
 
@@ -14,15 +12,17 @@ const dayjs = require('dayjs')
     const {owner, repo} = context.repo
 
     // get the configuration
-    let path
+    const path = core.getInput('configuration-path', {required: true})
 
-    try {
-      path = core.getInput('configuration-path', {required: true})
-    } catch (err) {
-      throw new Error(`config file not found`)
+    let schedule = core.getInput('scheduled-day', {required: false}) || 'today'
+    if (schedule !== 'today' && schedule !== 'tomorrow') {
+      core.info(
+        `[WARN] scheduled-day was set to '${schedule}'. Only 'today' or 'tomorrow' are allowed. Normalizing to 'today'.`
+      )
+      schedule = 'today'
     }
 
-    response = await client.repos.getContent({
+    const response = await client.repos.getContent({
       owner,
       repo,
       path,
@@ -30,7 +30,7 @@ const dayjs = require('dayjs')
     })
 
     const content = Buffer.from(response.data.content, 'base64').toString()
-    const {manager, report, label, title, template} = yaml.safeLoad(content)
+    const {manager, report, label, _title, template: _template} = yaml.safeLoad(content)
 
     // check if manager and report have write access to the repo
     const {repository} = await client.graphql(
@@ -113,22 +113,43 @@ const dayjs = require('dayjs')
       }
     }
 
+    let template = _template
+    if (_template.indexOf('.github/ISSUE_TEMPLATE') >= 0) {
+      const tpl = await client.repos.getContent({
+        owner,
+        repo,
+        path: _template,
+        ref: context.ref
+      })
+      template = Buffer.from(tpl.data.content, 'base64').toString()
+    }
+
+    let date = dayjs()
+
+    if (schedule === 'tomorrow') {
+      date = dayjs().add(1, 'days')
+    }
+
+    const title =
+      _title || `@${manager}/@${report} 1:1 Topics {% date %}`.replace('{% date %}', date.format('M/D/YYYY'))
+
     const body = template
+      .replace('{% date %}', date.format('M/D/YYYY'))
       .replace('{% last %}', refs.length === 0 ? 'n/a' : `#${refs.join(' #')}`)
       .replace('{% manager %}', manager)
       .replace('{% report %}', report)
 
     // open new 1:1 issue, label it and assign it to manager and report
-    response = await client.issues.create({
+    const issue = await client.issues.create({
       owner,
       repo,
-      title: title || `@${manager}/@${report} 1:1 Topics ${dayjs().format('M/D/YYYY')}`,
+      title,
       body,
       labels: [label],
       assignees: [manager, report]
     })
 
-    core.setOutput('url', response.data.html_url)
+    core.setOutput('url', issue.data.html_url)
   } catch (err) {
     core.setFailed(err.message)
   }

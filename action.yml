@@ -6,13 +6,17 @@ branding:
   color: 'green'
 
 inputs:
-  configuration-path:
-    description: 'The path for the issue configurations'
-    default: '.github/101.yml'
-    required: false
   repo-token:
     description: 'The GITHUB_TOKEN secret'
     required: true
+  configuration-path:
+    description: 'The path for the issue configurations'
+    default: '.github/101.yml'
+    required: true
+  scheduled-day:
+    description: 'Is the meeting today or tomorrow?'
+    default: 'today'
+    required: false
 
 outputs:
   url:
