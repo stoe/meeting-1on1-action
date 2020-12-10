@@ -44,9 +44,7 @@ jobs:
         if: steps.npm-cache.outputs.cache-hit != 'true'
 
       - name: Build
-        run: |
-          npm run build --if-present
-          npm run pack --if-present
+        run: npm run build --if-present
         env:
           CI: true
 
