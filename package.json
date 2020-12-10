@@ -27,13 +27,13 @@
   "dependencies": {
     "@actions/core": "^1.2.6",
     "@actions/github": "^4.0.0",
-    "dayjs": "^1.9.4",
+    "dayjs": "^1.9.6",
     "js-yaml": "^3.14.0"
   },
   "devDependencies": {
     "@github/prettier-config": "^0.0.4",
     "@vercel/ncc": "^0.25.1",
-    "eslint": "^7.12.1",
+    "eslint": "^7.15.0",
     "eslint-config-prettier": "^6.14.0",
     "eslint-plugin-github": "^4.1.1"
   },
