@@ -20,7 +20,7 @@
   "main": "index.js",
   "scripts": {
     "pack": "ncc build index.js -o build -m",
-    "pretest": "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
+    "pretest": "npx eslint-config-prettier .eslintrc.json",
     "test": "eslint ./index.js",
     "start": "node ./index.js"
   },
@@ -34,7 +34,7 @@
     "@github/prettier-config": "^0.0.4",
     "@vercel/ncc": "^0.25.1",
     "eslint": "^7.15.0",
-    "eslint-config-prettier": "^6.14.0",
+    "eslint-config-prettier": "^7.0.0",
     "eslint-plugin-github": "^4.1.1"
   },
   "prettier": "@github/prettier-config"
