@@ -28,7 +28,7 @@
     "@actions/core": "^1.2.6",
     "@actions/github": "^4.0.0",
     "dayjs": "^1.9.7",
-    "js-yaml": "^3.14.1"
+    "js-yaml": "^4.0.0"
   },
   "devDependencies": {
     "@github/prettier-config": "^0.0.4",
