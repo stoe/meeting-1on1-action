@@ -8,5 +8,9 @@
   },
   "plugins": ["github"],
   "extends": ["plugin:github/recommended"],
-  "rules": {}
+  "rules": {
+    "github/no-then": "off",
+    "no-console": "off",
+    "no-unused-vars": ["error", {"argsIgnorePattern": "response|error"}]
+  }
 }
