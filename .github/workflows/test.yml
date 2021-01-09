@@ -36,8 +36,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ steps.npm-cache.outputs.dir }}
-          key: npm-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: npm-
+          key: npm-${{ matrix.node-version }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: npm-${{ matrix.node-version }}-
 
       - name: Install Dependencies
         run: npm install --ignore-scripts --pure-lockfile
