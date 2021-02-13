@@ -1,7 +1,7 @@
 {
   "name": "@stoe/meeting-1on1-action",
   "description": "Manage 1:1 meeting issues",
-  "version": "3.0.0",
+  "version": "2.0.1",
   "keywords": [],
   "author": {
     "name": "Stefan Stölzle",
@@ -17,33 +17,25 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
-    "build": "ncc build src/index.js -o build -m",
+    "build": "ncc build index.js -o build -m",
     "pretest": "npx eslint-config-prettier .eslintrc.json",
-    "test": "eslint *.js && ava",
-    "start": "node ./src/index.js"
+    "test": "eslint ./index.js",
+    "start": "node ./index.js"
   },
   "dependencies": {
     "@actions/core": "^1.2.6",
     "@actions/github": "^4.0.0",
     "dayjs": "^1.10.4",
-    "js-yaml": "^4.0.0"
+    "js-yaml": "^3.14.1"
   },
   "devDependencies": {
     "@github/prettier-config": "^0.0.4",
     "@vercel/ncc": "^0.27.0",
-    "ava": "^3.15.0",
     "eslint": "^7.20.0",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-github": "^4.1.1"
-  },
-  "ava": {
-    "files": [
-      "**/*.t.js"
-    ],
-    "failFast": true,
-    "verbose": false
   },
   "prettier": "@github/prettier-config"
 }
