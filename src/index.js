@@ -24,7 +24,3 @@ const run = async () => {
 }
 
 module.exports = {run}
-
-if (require.main === module) {
-  run()
-}
