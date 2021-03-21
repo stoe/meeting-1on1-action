@@ -9,11 +9,7 @@
     "url": "https://github.com/stoe"
   },
   "license": "MIT",
-  "homepage": "https://github.com/stoe/meeting-1on1-action#readme",
-  "repository": "git@github.com:stoe/meeting-1on1-action.git",
-  "bugs": {
-    "url": "https://github.com/stoe/meeting-1on1-action/issues"
-  },
+  "repository": "github:stoe/meeting-1on1-action",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
