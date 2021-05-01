@@ -21,7 +21,7 @@
     "start": "node ./index.js"
   },
   "dependencies": {
-    "@actions/core": "^1.2.6",
+    "@actions/core": "^1.2.7",
     "@actions/github": "^4.0.0",
     "dayjs": "^1.10.4",
     "js-yaml": "^3.14.1"
