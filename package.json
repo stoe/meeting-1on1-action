@@ -1,7 +1,7 @@
 {
   "name": "@stoe/meeting-1on1-action",
   "description": "Manage 1:1 meeting issues",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "keywords": [],
   "author": {
     "name": "Stefan Stölzle",
@@ -19,10 +19,10 @@
   },
   "main": "index.js",
   "scripts": {
-    "build": "npx @vercel/ncc build index.js --out dist --license licenses.txt --quiet --minify",
-    "watch": "npx @vercel/ncc build index.js --out dist --license licenses.txt --quiet --minify --watch",
+    "build": "npx @vercel/ncc build src/index.js --out dist --license licenses.txt --quiet --minify",
+    "watch": "npx @vercel/ncc build src/index.js --out dist --license licenses.txt --quiet --minify --watch",
     "pretest": "npx eslint-config-prettier .eslintrc.json",
-    "test": "eslint ./index.js"
+    "test": "eslint ./src/**/*.js && ava"
   },
   "dependencies": {
     "@actions/core": "^1.3.0",
@@ -32,9 +32,16 @@
   },
   "devDependencies": {
     "@github/prettier-config": "^0.0.4",
+    "ava": "^3.15.0",
     "eslint": "^7.27.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-github": "^4.1.3"
   },
-  "prettier": "@github/prettier-config"
+  "prettier": "@github/prettier-config",
+  "ava": {
+    "files": [
+      "**/*.t.js"
+    ],
+    "verbose": false
+  }
 }
