@@ -19,8 +19,8 @@
   },
   "main": "index.js",
   "scripts": {
-    "build": "npx @vercel/ncc build src/index.js --out dist --license licenses.txt --quiet --minify",
-    "watch": "npx @vercel/ncc build src/index.js --out dist --license licenses.txt --quiet --minify --watch",
+    "build": "npx @vercel/ncc build src/index.js --out dist --license licenses.txt --quiet --minify --source-map",
+    "watch": "npx @vercel/ncc build src/index.js --out dist --watch",
     "pretest": "npx eslint-config-prettier .eslintrc.json",
     "test": "eslint ./src/**/*.js && ava"
   },
