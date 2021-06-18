@@ -55,7 +55,7 @@ class Meeting {
     const {octokit, path, owner, repo, ref, schedule} = this
 
     // get the configuration
-    const content = await octokit.repos
+    const content = await octokit.rest.repos
       .getContent({
         owner,
         repo,
@@ -115,14 +115,14 @@ class Meeting {
 
     // check if 1:1 label exists and created it if not
     try {
-      await octokit.issues.getLabel({
+      await octokit.rest.issues.getLabel({
         owner,
         repo,
         name: label,
         description: '1:1 meeting agenda and notes'
       })
     } catch (err) {
-      await octokit.issues.createLabel({
+      await octokit.rest.issues.createLabel({
         owner,
         repo,
         name: label,
@@ -132,7 +132,7 @@ class Meeting {
     }
 
     // check for old open 1:1 issues and close them
-    const data = await octokit.issues
+    const data = await octokit.rest.issues
       .listForRepo({
         owner,
         repo,
@@ -175,7 +175,7 @@ class Meeting {
 
     let template = _template
     if (_template.indexOf('.github/ISSUE_TEMPLATE') >= 0) {
-      const tpl = await octokit.repos
+      const tpl = await octokit.rest.repos
         .getContent({
           owner,
           repo,
@@ -208,7 +208,7 @@ class Meeting {
       .replace('{% report %}', report)
 
     // open new 1:1 issue, label it and assign it to manager and report
-    const url = await octokit.issues
+    const url = await octokit.rest.issues
       .create({
         owner,
         repo,
