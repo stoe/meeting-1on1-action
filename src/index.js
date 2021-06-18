@@ -2,7 +2,10 @@ const core = require('@actions/core')
 
 const Meeting = require('./utils/meeting')
 
-const run = async () => {
+// execute
+;(async () => {
+  const debug = core.isDebug()
+
   try {
     const token = core.getInput('repo-token', {required: true})
     const path = core.getInput('configuration-path', {required: true})
@@ -12,15 +15,15 @@ const run = async () => {
       token,
       path,
       schedule,
-      debug: core.isDebug()
+      debug
     })
 
     const url = await meeting.start()
 
     core.setOutput('url', url)
   } catch (err) {
+    if (debug) console.error(err)
+
     core.setFailed(err.message)
   }
-}
-
-module.exports = {run}
+})()
