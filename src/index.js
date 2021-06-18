@@ -2,7 +2,8 @@ const core = require('@actions/core')
 
 const Meeting = require('./utils/meeting')
 
-const run = async () => {
+// execute
+;(async () => {
   try {
     const token = core.getInput('repo-token', {required: true})
     const path = core.getInput('configuration-path', {required: true})
@@ -21,6 +22,4 @@ const run = async () => {
   } catch (err) {
     core.setFailed(err.message)
   }
-}
-
-module.exports = {run}
+})()
