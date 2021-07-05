@@ -1,7 +1,7 @@
 {
   "name": "@stoe/meeting-1on1-action",
   "description": "Manage 1:1 meeting issues",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "keywords": [],
   "author": {
     "name": "Stefan Stölzle",
