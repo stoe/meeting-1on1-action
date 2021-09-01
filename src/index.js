@@ -1,15 +1,14 @@
-const core = require('@actions/core')
-
-const Meeting = require('./utils/meeting')
+import {getInput, isDebug, setFailed, setOutput} from '@actions/core'
+import Meeting from './Meeting.mjs'
 
 // execute
 ;(async () => {
-  const debug = core.isDebug()
+  const debug = isDebug()
 
   try {
-    const token = core.getInput('repo-token', {required: true})
-    const path = core.getInput('configuration-path', {required: true})
-    const schedule = core.getInput('scheduled-day', {required: false}) || 'today'
+    const token = getInput('repo-token', {required: true})
+    const path = getInput('configuration-path', {required: true})
+    const schedule = getInput('scheduled-day', {required: false}) || 'today'
 
     const meeting = new Meeting({
       token,
@@ -20,10 +19,10 @@ const Meeting = require('./utils/meeting')
 
     const url = await meeting.start()
 
-    core.setOutput('url', url)
+    setOutput('url', url)
   } catch (err) {
     if (debug) console.error(err)
 
-    core.setFailed(err.message)
+    setFailed(err.message)
   }
 })()
