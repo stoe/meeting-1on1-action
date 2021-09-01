@@ -10,7 +10,8 @@ jobs:
   codeql:
     runs-on: ubuntu-latest
 
-    permissions: read-all
+    permissions:
+      security-events: write
 
     steps:
       - uses: actions/checkout@v2.3.4
