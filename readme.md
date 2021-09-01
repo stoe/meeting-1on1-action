@@ -17,10 +17,14 @@ jobs:
   schedule:
     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
+    permissions:
+      contents: read
+      issues: write
 
-      - uses: stoe/meeting-1on1-action@v2
+    steps:
+      - uses: actions/checkout@v2.3.4
+
+      - uses: stoe/meeting-1on1-action@v3.1.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -117,17 +121,14 @@ For example:
 
 ```yml
 steps:
-  - name: Checkout
-    uses: actions/checkout@v2
+  - uses: actions/checkout@v2.3.4
 
-  - name: Create 1:1 issue
-    uses: stoe/meeting-1on1-action@v2
+  - uses: stoe/meeting-1on1-action@v3.1.0
     id: issue
     with:
       repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-  - name: 1:1 issue URL
-    run: echo "${{ steps.issue.outputs.url }}"
+  - run: echo "${{ steps.issue.outputs.url }}"
 ```
 
 ## License
