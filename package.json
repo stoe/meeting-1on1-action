@@ -1,7 +1,8 @@
 {
   "name": "@stoe/meeting-1on1-action",
-  "description": "Manage 1:1 meeting issues",
   "version": "3.0.3",
+  "type": "module",
+  "description": "Manage 1:1 meeting issues",
   "keywords": [],
   "author": {
     "name": "Stefan Stölzle",
@@ -17,12 +18,12 @@
     "node": ">=14",
     "npm": ">=7"
   },
-  "main": "index.js",
+  "exports": "./src/Meeting.mjs",
   "scripts": {
     "build": "npx @vercel/ncc build src/index.js --out dist --license licenses.txt --quiet --minify --source-map",
     "watch": "npx @vercel/ncc build src/index.js --out dist --watch",
     "pretest": "npx eslint-config-prettier .eslintrc.json",
-    "test": "eslint ./src/**/*.js && ava"
+    "test": "eslint . && ava"
   },
   "dependencies": {
     "@actions/core": "^1.5.0",
