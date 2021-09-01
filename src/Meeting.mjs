@@ -1,7 +1,6 @@
-const github = require('@actions/github')
-
-const yaml = require('js-yaml')
-const dayjs = require('dayjs')
+import {context, getOctokit} from '@actions/github'
+import {load} from 'js-yaml'
+import dayjs from 'dayjs'
 
 class Meeting {
   /**
@@ -12,9 +11,8 @@ class Meeting {
    * @param {boolean} [options.debug]
    */
   constructor({token, path, schedule, debug}) {
-    this.octokit = new github.getOctokit(token)
+    this.octokit = getOctokit(token)
 
-    const {context} = github
     const {owner, repo} = context.repo
 
     this.owner = owner
@@ -72,7 +70,7 @@ class Meeting {
     this.log('[DEBUG]', {content})
 
     const config = Buffer.from(content, 'base64').toString()
-    const {manager, report, label, title: _title, template: _template} = yaml.load(config)
+    const {manager, report, label, title: _title, template: _template} = load(config)
 
     this.log('[DEBUG]', {manager, report, label, _title, _template})
 
@@ -230,4 +228,4 @@ class Meeting {
   }
 }
 
-module.exports = Meeting
+export default Meeting

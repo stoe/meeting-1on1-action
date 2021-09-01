@@ -1,8 +1,9 @@
-const test = require('ava')
+import Meeting from '../src/Meeting.mjs'
+import test from 'ava'
 
-const Meeting = require('./meeting')
-
-let meeting, token, path
+let meeting
+let token
+let path
 
 const owner = 'foo'
 const repo = 'bar'
