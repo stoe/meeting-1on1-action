@@ -9,7 +9,5 @@ jobs:
   publish:
     uses: stoe/policies/.github/workflows/policy-node-publish.yml@main
     with:
-      npm: true
+      npm: false
       gh: true
-    secrets:
-      npm_token: ${{ secrets.NPM_TOKEN }}
