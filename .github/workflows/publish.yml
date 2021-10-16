@@ -5,9 +5,15 @@ on:
     tags:
       - 'v*.*.*'
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   publish:
     uses: stoe/policies/.github/workflows/policy-node-publish.yml@main
     with:
-      npm: false
+      npm: true
       gh: true
+    secrets:
+      npm_token: ${{ secrets.NPM_TOKEN }}
