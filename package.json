@@ -1,7 +1,6 @@
 {
   "name": "@stoe/meeting-1on1-action",
-  "version": "3.1.0",
-  "type": "module",
+  "version": "3.1.1",
   "description": "Manage 1:1 meeting issues",
   "keywords": [],
   "author": {
@@ -35,14 +34,14 @@
     "@github/prettier-config": "^0.0.4",
     "@vercel/ncc": "^0.31.1",
     "ava": "^3.15.0",
-    "eslint": "^7.32.0",
+    "eslint": "^7.32.0, <8",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-github": "^4.3.2"
   },
   "prettier": "@github/prettier-config",
   "ava": {
     "files": [
-      "tests/**/*.js"
+      "tests/**/*.mjs"
     ],
     "verbose": false
   }
