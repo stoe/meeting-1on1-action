@@ -41,7 +41,7 @@
   "prettier": "@github/prettier-config",
   "ava": {
     "files": [
-      "tests/**/*.js"
+      "tests/**/*.mjs"
     ],
     "verbose": false
   }
