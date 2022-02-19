@@ -35,7 +35,7 @@
     "@vercel/ncc": "^0.33.1",
     "ava": "^4.0.1",
     "eslint": "^7.32.0, <9",
-    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-prettier": "^8.4.0",
     "eslint-plugin-github": "^4.3.5"
   },
   "prettier": "@github/prettier-config",
