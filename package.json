@@ -1,6 +1,6 @@
 {
   "name": "@stoe/meeting-1on1-action",
-  "version": "3.1.1",
+  "version": "4.0.0",
   "description": "Manage 1:1 meeting issues",
   "keywords": [],
   "author": {
@@ -14,35 +14,39 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "engines": {
-    "node": ">=14",
-    "npm": ">=7"
+    "node": ">=16",
+    "npm": ">=8"
   },
-  "exports": "./src/Meeting.mjs",
+  "main": "action.js",
   "scripts": {
-    "build": "npx @vercel/ncc build src/index.js --out dist --license licenses.txt --quiet --minify --source-map",
-    "watch": "npx @vercel/ncc build src/index.js --out dist --watch",
+    "build": "npx @vercel/ncc build action.js --out dist --license licenses.txt --quiet --minify",
+    "format": "npx prettier --config-precedence prefer-file --write . && eslint . --fix",
+    "prebuild": "rimraf dist",
+    "prepare": "husky install ./.github/husky",
     "pretest": "npx eslint-config-prettier .eslintrc.json",
-    "test": "eslint . && ava"
+    "test": "eslint .",
+    "watch": "npx @vercel/ncc build action.js --out dist --watch"
   },
   "dependencies": {
     "@actions/core": "^1.6.0",
     "@actions/github": "^5.0.0",
-    "dayjs": "^1.10.7",
+    "dayjs": "^1.10.8",
     "js-yaml": "^4.1.0"
   },
   "devDependencies": {
     "@github/prettier-config": "^0.0.4",
     "@vercel/ncc": "^0.33.3",
-    "ava": "^4.0.1",
-    "eslint": "^7.32.0, <9",
-    "eslint-config-prettier": "^8.4.0",
-    "eslint-plugin-github": "^4.3.5"
+    "eslint": "^8.10.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-github": "^4.3.5",
+    "husky": "^7.0.4",
+    "rimraf": "^3.0.2"
   },
-  "prettier": "@github/prettier-config",
-  "ava": {
-    "files": [
-      "tests/**/*.mjs"
-    ],
-    "verbose": false
-  }
+  "husky": {
+    "hooks": {
+      "pre-commit": "./.github/husky/pre-commit",
+      "pre-push": "./.github/husky/pre-push"
+    }
+  },
+  "prettier": "@github/prettier-config"
 }

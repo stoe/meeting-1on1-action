@@ -7,12 +7,8 @@
     "es6": true,
     "node": true
   },
-  "plugins": [
-    "github"
-  ],
-  "extends": [
-    "plugin:github/recommended"
-  ],
+  "plugins": ["github"],
+  "extends": ["plugin:github/recommended"],
   "rules": {
     "github/no-then": "off",
     "no-console": "off"
