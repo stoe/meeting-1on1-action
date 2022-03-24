@@ -1,5 +1,5 @@
 import {getInput, isDebug, setFailed, setOutput} from '@actions/core'
-import Meeting from './Meeting.mjs'
+import Meeting from './lib/meeting'
 
 // execute
 ;(async () => {
