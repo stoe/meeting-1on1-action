@@ -30,7 +30,7 @@
   "dependencies": {
     "@actions/core": "^1.8.0",
     "@actions/github": "^5.0.1",
-    "dayjs": "^1.11.1",
+    "dayjs": "^1.11.2",
     "js-yaml": "^4.1.0"
   },
   "devDependencies": {
