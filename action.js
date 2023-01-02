@@ -14,7 +14,7 @@ import Meeting from './lib/meeting'
       token,
       path,
       schedule,
-      debug
+      debug,
     })
 
     const url = await meeting.start()
