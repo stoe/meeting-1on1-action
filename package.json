@@ -39,7 +39,7 @@
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-github": "^4.6.1",
     "husky": "^8.0.3",
-    "rimraf": "^4.1.2"
+    "rimraf": "^4.4.1"
   },
   "husky": {
     "hooks": {
