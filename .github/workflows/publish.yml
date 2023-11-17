@@ -27,4 +27,4 @@ jobs:
 
       - uses: github-early-access/generate-build-provenance@main
         with:
-          subject-path: '${{ github.workspace }}/dist'
+          subject-path: '${{ github.workspace }}/action.yml'
