@@ -6,7 +6,8 @@ on:
       - 'v*.*.*'
 
 permissions:
-  contents: read
+  id-token: write
+  contents: write
   packages: write
 
 jobs:
@@ -15,3 +16,12 @@ jobs:
     with:
       npm: false
       gh: true
+
+  generate-build-provenance:
+    runs-on: ubuntu-latest
+    needs: publish
+
+    steps:
+      - uses: github-early-access/generate-build-provenance@main
+        with:
+          subject-path: '${{ github.workspace }}/action.yml'
