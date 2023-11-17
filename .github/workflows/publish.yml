@@ -22,6 +22,9 @@ jobs:
     needs: publish
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+
       - uses: github-early-access/generate-build-provenance@main
         with:
-          subject-path: '${{ github.workspace }}/action.yml'
+          subject-path: '${{ github.workspace }}/dist'
