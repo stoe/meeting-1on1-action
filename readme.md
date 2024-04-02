@@ -106,8 +106,14 @@ Defaults to `.github/101.yml`.
 configuration-path: .github/101.yml
 ```
 
-Is the meeting today or tomorrow?
-Defaults to `today` and will fall back to `today` if neither `today` or `tomorrow` are provided.
+When is the meeting?
+Acceptable values:
+
+- `today`
+- `tomorrow`
+- `x days from now` (where x is the number of days away the meeting is)
+
+Defaults to `today` and will fall back to `today` if none of the above are provided.
 
 ```yaml
 scheduled-day: today
