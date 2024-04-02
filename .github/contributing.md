@@ -10,6 +10,7 @@ Hi there! I'm thrilled that you'd like to contribute to this project. Your help 
 1. [Fork][fork] and clone the repository
 1. Create a new branch: `git checkout -b my-branch-name`
 1. Make your change
+1. Run the `test-action.yml` workflow in your fork to validate the change. This action is controlled by a `workflow_dispatch` trigger, which means you can manually run it against your branch in the GitHub UI. You can find additional details on triggering [here](https://docs.github.com/en/actions/using-workflows/manually-running-a-workflow).
 1. Push to your fork and [submit a pull request][pr]
 1. Pat your self on the back and wait for your pull request to be reviewed and merged.
 
