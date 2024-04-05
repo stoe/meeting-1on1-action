@@ -14,7 +14,7 @@ inputs:
     default: '.github/101.yml'
     required: true
   scheduled-day:
-    description: 'Is the meeting today or tomorrow?'
+    description: 'When is the meeting?'
     default: 'today'
     required: false
 
