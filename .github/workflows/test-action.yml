@@ -1,0 +1,30 @@
+name: Test updates to meeting-1on1-action
+on:
+  workflow_dispatch:
+    inputs:
+      configuration-path:
+        description: 'The path for the issue configuration'
+        default: '.github/101.yml'
+        required: true
+      scheduled-day:
+        description: 'When is the meeting?'
+        default: 'today'
+        required: false
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+
+      - run: |
+          npm install
+          npm run build
+
+      - name: Test action
+        uses: ./
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          configuration-path: ${{ inputs.configuration-path }}
+          scheduled-day: ${{ inputs.scheduled-day }}
