@@ -37,7 +37,7 @@
     "@vercel/ncc": "^0.38.1",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-github": "^4.10.2",
+    "eslint-plugin-github": "^5.0.1",
     "husky": "^9.0.11",
     "rimraf": "^5.0.7"
   },
