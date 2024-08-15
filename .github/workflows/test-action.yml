@@ -1,4 +1,5 @@
 name: Test updates to meeting-1on1-action
+
 on:
   workflow_dispatch:
     inputs:
@@ -11,9 +12,12 @@ on:
         default: 'today'
         required: false
 
+permissions: read-all
+
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332

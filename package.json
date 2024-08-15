@@ -1,6 +1,7 @@
 {
   "name": "@stoe/meeting-1on1-action",
-  "version": "4.2.0",
+  "version": "5.0.0-dev",
+  "type": "module",
   "description": "Manage 1:1 meeting issues",
   "keywords": [],
   "author": {
@@ -14,16 +15,16 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "engines": {
-    "node": ">=16",
-    "npm": ">=8"
+    "node": ">=20",
+    "npm": ">=10"
   },
   "main": "action.js",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "npx @vercel/ncc build action.js -o dist -q -m -s --license licenses.txt",
     "format": "npx prettier --config-precedence prefer-file --write . && eslint . --fix",
-    "prepare": "husky install ./.github/husky",
-    "pretest": "npx eslint-config-prettier .eslintrc.json",
+    "prepare": "husky",
+    "pretest": "npx eslint-config-prettier eslint.config.js",
     "test": "eslint ."
   },
   "dependencies": {
@@ -35,17 +36,30 @@
   "devDependencies": {
     "@github/prettier-config": "^0.0.6",
     "@vercel/ncc": "^0.38.1",
-    "eslint": "^8.57.0",
+    "eslint": "^9.9.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-github": "^5.0.1",
+    "eslint-plugin-markdown": "^5.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "globals": "^15.9.0",
     "husky": "^9.1.4",
+    "lint-staged": "^15.2.9",
+    "prettier": "^3.3.3",
     "rimraf": "^6.0.1"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "./.github/husky/pre-commit",
-      "pre-push": "./.github/husky/pre-push"
+      "pre-commit": ".husky/pre-commit",
+      "pre-push": ".husky/pre-push"
     }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "npm run format",
+      "npm run test"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
   },
   "prettier": "@github/prettier-config"
 }
