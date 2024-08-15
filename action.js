@@ -20,9 +20,9 @@ import Meeting from './lib/meeting'
     const url = await meeting.start()
 
     setOutput('url', url)
-  } catch (err) {
-    if (debug) console.error(err)
+  } catch (error) {
+    if (debug) console.erroror(error)
 
-    setFailed(err.message)
+    setFailed(error.message)
   }
 })()
