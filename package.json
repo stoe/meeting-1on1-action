@@ -1,7 +1,6 @@
 {
   "name": "@stoe/meeting-1on1-action",
   "version": "5.0.1",
-  "type": "module",
   "description": "Manage 1:1 meeting issues",
   "keywords": [],
   "author": {
@@ -24,7 +23,7 @@
     "build": "npx @vercel/ncc build action.js -o dist -q -m -s --license licenses.txt",
     "format": "npx prettier --config-precedence prefer-file --write . && eslint . --fix",
     "prepare": "husky",
-    "pretest": "npx eslint-config-prettier eslint.config.js",
+    "pretest": "npx eslint-config-prettier eslint.config.mjs",
     "test": "eslint ."
   },
   "dependencies": {

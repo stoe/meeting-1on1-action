@@ -15,7 +15,7 @@ export default [
       globals: {
         ...globals.node,
       },
-      parserOptions: {ecmaVersion: 'latest', sourceType: 'module'},
+      parserOptions: {ecmaVersion: 2020, sourceType: 'module'},
     },
     plugins: {markdown},
     rules: {
