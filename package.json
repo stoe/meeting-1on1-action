@@ -34,15 +34,15 @@
   },
   "devDependencies": {
     "@github/prettier-config": "^0.0.6",
-    "@vercel/ncc": "^0.38.2",
+    "@vercel/ncc": "^0.38.3",
     "eslint": "^9.11.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-markdown": "^5.1.0",
     "eslint-plugin-prettier": "^5.2.1",
-    "globals": "^15.11.0",
-    "husky": "^9.1.6",
+    "globals": "^15.13.0",
+    "husky": "^9.1.7",
     "lint-staged": "^15.2.10",
-    "prettier": "^3.3.3",
+    "prettier": "^3.4.1",
     "rimraf": "^6.0.1"
   },
   "husky": {
