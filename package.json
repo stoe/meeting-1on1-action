@@ -29,8 +29,8 @@
   "dependencies": {
     "@actions/core": "^3.0.1",
     "@actions/github": "^9.1.1",
-    "dayjs": "^1.11.20",
-    "js-yaml": "^4.1.1"
+    "dayjs": "^1.11.21",
+    "js-yaml": "^4.2.0"
   },
   "devDependencies": {
     "@github/prettier-config": "^0.0.6",
